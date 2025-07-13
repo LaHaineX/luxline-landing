@@ -3,155 +3,105 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>LUXline — бот для записи клиентов</title>
+<title>LUXline — бот‑запись в Telegram</title>
 
-<!-- ===== ── простой тёмный «космос» ── ===== -->
+<!-- ====== БАЗОВЫЙ СТИЛЬ ====== -->
 <style>
+/* шрифт‑по‑умолчанию */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap");
+
 :root{
-  --c-bg:#0e1620;
-  --c-card:#1a2431;
-  --c-accent:#25d0ff;
-  --c-text:#d9e3f0;
-  --c-muted:#8fa3ba;
-  font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --accent:#10c9e7;
+  --text:#e5f7ff;
+  --bg:#0a0f1c;
 }
-*,::before,::after{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--c-bg);color:var(--c-text);line-height:1.6;scroll-behavior:smooth}
-h1,h2{color:var(--c-accent);margin:2rem 0 1rem;text-align:center}
-h3{margin:1.5rem 0 .5rem;color:var(--c-accent)}
-a{color:var(--c-accent);text-decoration:none}
-section{max-width:820px;margin:0 auto;padding:2rem 1rem}
-ul{margin-left:1.2rem}
-button.cta{
-  background:var(--c-accent);color:#002;
-  border:none;border-radius:8px;padding:.9rem 2rem;font-size:1rem;
-  cursor:pointer;margin:2rem auto;display:block;font-weight:600
+
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:"Inter",sans-serif;
+  color:var(--text);
+  line-height:1.4;
+  background:var(--bg) url("img/bg.png") center/cover fixed;
+  text-align:center;
+  padding-bottom:5rem;
 }
-.card{
-  background:var(--c-card);border-radius:12px;padding:1.5rem;box-shadow:0 8px 20px #0004;margin:1.5rem 0
+a{color:var(--accent);text-decoration:none;}
+h1,h2{color:var(--accent);margin:1.5rem 0 .8rem;font-weight:600;}
+section{max-width:960px;margin:0 auto 3rem;padding:0 1rem;}
+ul{list-style:disc inside;text-align:left;display:inline-block;margin:.5rem 0 0;padding-left:1rem;}
+button, .btn{
+  display:inline-block;background:var(--accent);color:#002631;
+  border:none;border-radius:8px;padding:.9rem 2.2rem;
+  font-weight:600;font-size:1rem;cursor:pointer;transition:.25s;
 }
-.gallery{display:grid;gap:1rem}
-@media(min-width:600px){.gallery{grid-template-columns:repeat(3,1fr)}}
-.gallery img{width:100%;border-radius:8px;object-fit:cover;box-shadow:0 4px 12px #0006}
-footer{margin-top:3rem;padding:2rem 0;background:#050a12;text-align:center;font-size:.9rem;color:var(--c-muted)}
+button:hover,.btn:hover{filter:brightness(115%);transform:translateY(-2px);}
+footer{font-size:.85rem;margin-top:4rem;color:#77889a}
+img.logo{max-width:190px;margin:2rem auto 1rem;display:block}
+
+/* ====== СКРИНШОТЫ ====== */
+.screens{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem;margin-top:1.5rem;
+}
+.screenshot{
+  width:160px;height:320px;overflow:hidden;border-radius:12px;
+  box-shadow:0 0 12px #00ffff33;position:relative;
+  animation:fadeIn .8s ease both;
+}
+.screenshot img{width:100%;height:100%;object-fit:cover;display:block;}
+@keyframes fadeIn{from{opacity:0;transform:scale(.92)} to{opacity:1}}
+
 </style>
 </head>
-
 <body>
 
-<!-- ===== hero ================================= -->
-<section style="text-align:center">
-  <img src="img/logo.png" alt="LUXline logo" style="max-width:220px;width:60%;height:auto;margin:0 auto 1.5rem" />
-  <h1>LUXline</h1>
-  <p style="margin-bottom:.8rem;font-size:1.1rem">Telegram‑бот для записи клиентов</p>
-  <div class="card">
-    <h3>Доп‑услуги по запросу</h3>
-    <ul>
-      <li><strong>Дизайн логотипа / фирстиля</strong> — от&nbsp;1 500 ₽<br>
-          Мини‑бриф + 2‑3&nbsp;концепта, итоговый SVG/PNG для соцсетей.</li>
-      <li><strong>Прайс‑лист в бренд‑стиле</strong> (JPEG / PDF) — 800 ₽</li>
-      <li>Адаптация шапки/фона для Telegram‑канала — 500 ₽</li>
-    </ul>
-    <p style="margin-top:.8rem">Нужен фирменный стиль? — Напишите, обсудим задачи и срок.</p>
-  </div>
-  <button class="cta" onclick="location.href='https://t.me/LaHaine_X'">Попробовать бесплатно</button>
-</section>
+<!-- ====== HERO ====== -->
+<img src="img/logo.png" alt="LUXline logo" class="logo" />
+<h1>LUXline</h1>
+<p>Telegram‑бот для записи клиентов</p>
+<a class="btn" href="https://t.me/LaHaine_X" target="_blank" rel="noopener">Попробовать бесплатно</a>
 
-<!-- ===== about ================================ -->
+<!-- ====== О ПРОДУКТЕ ====== -->
 <section>
-  <h2>Что такое LUXline?</h2>
-  <p>LUXline — умный бот для мастеров и небольших студий, который:</p>
+  <h2>Что такое&nbsp;LUXline?</h2>
   <ul>
     <li>автоматизирует запись, показывает прайс</li>
     <li>отправляет напоминания клиентам</li>
     <li>собирает отзывы и формирует отчёты</li>
   </ul>
-</section>
 
-<!-- ===== target =============================== -->
-<section>
-  <h2>Кому подойдёт</h2>
+  <h2 style="margin-top:2.2rem">Кому подойдёт</h2>
   <ul>
-    <li>Мастерам на дому (маникюр, брови, ресницы, депиляция…)</li>
-    <li>Небольшим салонам красоты без CRM</li>
+    <li>Мастерам на дому (маникюр, брови, ресницы…)</li>
+    <li>Небольшим салонам красоты без&nbsp;CRM</li>
     <li>Администраторам, которые ведут несколько мастеров</li>
   </ul>
 </section>
 
-<!-- ===== how it works ========================= -->
-<section>
+<!-- ====== СКРИНЫ ====== -->
+<section id="how-it-works">
   <h2>Как работает</h2>
-  <div class="gallery">
-    <img src="img/step1.jpg" alt="Step 1" />
-    <img src="img/step2.jpg" alt="Step 2" />
-    <img src="img/step3.jpg" alt="Step 3" />
-    <img src="img/step4.png" alt="Step 4" />
-    <img src="img/step5.jpg" alt="Step 5" />
-  </div>
-
-  <div class="card">
-    <h3>Путь клиента</h3>
-    <p>Открывает бот → выбирает услугу, дату и время → подтверждает контакт → получает напоминания.</p>
-    <h3>Путь мастера</h3>
-    <p>Принимает заявки в админ‑чате, нажимает <em>«✅»</em> или <em>«❌»</em>, смотрит отчёты в Excel/Numbers и делает рассылки.</p>
+  <div class="screens">
+    <div class="screenshot"><img src="img/step1.jpg" alt="Step 1" /></div>
+    <div class="screenshot"><img src="img/step2.jpg" alt="Step 2" /></div>
+    <div class="screenshot"><img src="img/step3.jpg" alt="Step 3" /></div>
+    <div class="screenshot"><img src="img/step4.png" alt="Step 4" /></div>
+    <div class="screenshot"><img src="img/step5.jpg" alt="Step 5" /></div>
   </div>
 </section>
 
-<!-- ===== benefits ============================= -->
+<!-- ====== ТАРИФЫ ====== -->
 <section>
-  <h2>Почему выгодно</h2>
+  <h2>Тарифы и услуги</h2>
   <ul>
-    <li><strong>⏳ Экономия времени:</strong> бот общается вместо вас</li>
-    <li><strong>💰 Больше записей:</strong> запись за&nbsp;2&nbsp;минуты без звонков</li>
-    <li><strong>📊 Управление:</strong> все заявки и&nbsp;отзывы в одном месте</li>
+    <li><b>Базовый&nbsp;— 390&nbsp;₽/мес</b><br/>Запись, прайс, отзывы, рассылка</li>
+    <li><b>Продвинутый&nbsp;— 690&nbsp;₽/мес</b><br/>Онлайн‑оплата, редактирование прайса, расширенный календарь</li>
+    <li><b>Премиум&nbsp;— 1190&nbsp;₽/мес</b><br/>Выделенный сервер, мультибот, несколько администраторов</li>
+    <li><b>Доп‑услуга:</b> создание логотипа и фирменного прайс‑листа<br/><i>(стоимость оговаривается индивидуально)</i></li>
   </ul>
 </section>
 
-<!-- ===== plans =============================== -->
-<section>
-  <h2>Тарифы</h2>
-
-  <div class="card">
-    <h3>Базовый — 390 ₽/мес</h3>
-    <ul>
-      <li>Каталог услуг и цен</li>
-      <li>Инлайн‑календарь и слоты времени</li>
-      <li>Админ‑панель: подтверждение/отказ</li>
-      <li>CSV‑экспорт записей и отзывов</li>
-      <li>Рассылка клиентам</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h3>Продвинутый — 690 ₽/мес</h3>
-    <ul>
-      <li>Все возможности «Базового»</li>
-      <li>Онлайн‑оплата в Telegram (частичная или полная)</li>
-      <li>Редактирование прайса с телефона</li>
-      <li>Доп. напоминания (за 1 день + за 2 ч)</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h3>Премиум — 1190 ₽/мес</h3>
-    <ul>
-      <li>Выделенный VPS‑сервер (до 5 000 клиентов)</li>
-      <li>Несколько администраторов</li>
-      <li>Мультибот (один бот — несколько мастеров)</li>
-      <li>Приоритетная поддержка 24/7</li>
-    </ul>
-  </div>
-
-  <p style="text-align:center;font-size:.9rem;color:var(--c-muted)">
-    * Все тарифы — без скрытых комиссий. Первая неделя&nbsp;— бесплатно.
-  </p>
-
-  <button class="cta" onclick="location.href='https://t.me/LaHaine_X'">Попробовать бесплатно</button>
-</section>
-
-<!-- ===== footer ============================== -->
 <footer>
-© 2025 LaHaineX &nbsp;|&nbsp; Telegram: <a href="https://t.me/LaHaine_X">@LaHaine_X</a>
+  © LaHaineX • Telegram: <a href="https://t.me/LaHaine_X" target="_blank">@LaHaine_X</a>
 </footer>
 
 </body>
